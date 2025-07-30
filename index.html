@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hammad Ahmad - Professional Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for Easy Theming */
+        :root {
+            --primary-color: #7f00ff;
+            --primary-color-hover: #9933ff;
+            --bg-dark: #12121f;
+            --bg-card: #1a1a2e;
+            --bg-sidebar: #161625;
+            --text-light: #e0e0e0;
+            --text-medium: #aaaaaa;
+            --text-white: #ffffff;
+            --border-color: #3a3a5a;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #12121f, #1a1a2e, #12121f, #242438);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-white);
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color-hover);
+        }
+
+        /* Layout */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 60px 0;
+            position: relative;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, border-width 0.2s;
+            z-index: 9999;
+        }
+
+        .custom-cursor.grow {
+            width: 40px;
+            height: 40px;
+            border-width: 3px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background-color: var(--bg-sidebar);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(-100%);
+        }
+
+        body.sidebar-visible .sidebar {
+            transform: translateX(0);
+        }
+
+        .sidebar-profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 10px;
+            box-shadow: 0 0 15px rgba(127, 0, 255, 0.5);
+        }
+
+        .sidebar-profile h2 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-profile p {
+            font-size: 0.9em;
+            color: var(--text-medium);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: var(--text-medium);
+            font-size: 1.1em;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .sidebar nav {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .sidebar nav ul {
+            width: 100%;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar nav ul li a {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 1.1em;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar nav ul li a i {
+            margin-right: 10px;
+            font-size: 1.2em;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar nav ul li a:hover,
+        .sidebar nav ul li a.active {
+            background-color: var(--border-color);
+            color: var(--primary-color);
+        }
+
+        .download-cv {
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .download-cv:hover {
+            background-color: var(--primary-color-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(127, 0, 255, 0.4);
+        }
+
+        .download-cv i {
+            margin-right: 8px;
+        }
+
+        /* Mobile Nav Toggle */
+        .mobile-nav-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1001;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+            transition: margin-left 0.3s;
+        }
+
+        /* Hero Section */
+        #home {
+            padding-top: 40px;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--bg-card);
+            padding: 40px 20px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-content {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero-content p.role {
+            font-size: 1.5em;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+            font-weight: 300;
+            height: auto;
+        }
+
+        .hero-content p.role .typing {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .hero-content p.description {
+            font-size: 1em;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .hero-buttons a {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-buttons a:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-buttons .view-work {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .hero-buttons .view-work:hover {
+            background-color: var(--primary-color-hover);
+            box-shadow: 0 5px 20px rgba(127, 0, 255, 0.5);
+        }
+
+        .hero-buttons .contact-me {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .hero-buttons .contact-me:hover {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 5px 20px rgba(127, 0, 255, 0.5);
+        }
+
+        .hero-image {
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Section Headings */
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-heading h2 {
+            font-size: 2.2em;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            margin-bottom: 0;
+        }
+
+        .section-heading h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-color-hover));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .about-text {
+            width: 100%;
+        }
+
+        .about-text h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .about-details {
+            width: 100%;
+            background-color: var(--bg-card);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .about-details ul li {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .about-details ul li strong {
+            min-width: 100px;
+            color: var(--primary-color);
+        }
+
+        /* Resume Section */
+        .edu-exp-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .education-item,
+        .experience-item {
+            background-color: var(--bg-card);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .education-item h4,
+        .experience-item h4 {
+            color: var(--primary-color);
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .education-item p,
+        .experience-item p {
+            color: var(--text-light);
+            font-size: 0.9em;
+        }
+
+        .education-item p.year,
+        .experience-item p.year {
+            color: var(--text-medium);
+            font-size: 0.85em;
+            margin-bottom: 15px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .service-item {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-color-hover)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-item:hover::before {
+            opacity: 1;
+        }
+
+        .service-item i {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .service-item:hover i {
+            transform: scale(1.1);
+        }
+
+        .service-item h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid,
+        .blogs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .portfolio-item,
+        .blog-item {
+            background-color: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-item:hover,
+        .blog-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+        }
+
+        .portfolio-item .img-container,
+        .blog-item .img-container {
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+        }
+
+        .portfolio-item img,
+        .blog-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img,
+        .blog-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item .overlay,
+        .blog-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(127, 0, 255, 0.7);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portfolio-item:hover .overlay,
+        .blog-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay i {
+            font-size: 2em;
+            color: white;
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .overlay i,
+        .blog-item:hover .overlay i {
+            transform: scale(1);
+        }
+
+        .portfolio-info,
+        .blog-content {
+            padding: 20px;
+        }
+
+        .portfolio-info h4,
+        .blog-content h4 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .portfolio-info p,
+        .blog-content p {
+            font-size: 0.85em;
+            color: var(--text-medium);
+        }
+
+        .blog-date-category {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85em;
+            color: var(--text-medium);
+            margin-bottom: 10px;
+        }
+
+        .blog-content a {
+            color: var(--primary-color);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .blog-content a i {
+            margin-left: 8px;
+            font-size: 0.9em;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .contact-info-cards {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-card {
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-card i {
+            font-size: 2em;
+            color: var(--primary-color);
+        }
+
+        .contact-form {
+            width: 100%;
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .contact-form .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(127, 0, 255, 0.3);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--primary-color-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(127, 0, 255, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-medium);
+            font-size: 0.9em;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .hero {
+                flex-direction: row;
+                text-align: left;
+                padding: 60px;
+            }
+
+            .hero-content {
+                width: 60%;
+                margin-bottom: 0;
+                text-align: left;
+            }
+
+            .hero-image {
+                width: 40%;
+                text-align: right;
+            }
+
+            .hero-content h1 {
+                font-size: 3em;
+            }
+
+            .hero-content p.role {
+                font-size: 1.8em;
+            }
+
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+
+            .about-content {
+                flex-direction: row;
+            }
+
+            .about-text {
+                width: 60%;
+            }
+
+            .about-details {
+                width: 40%;
+            }
+
+            .edu-exp-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portfolio-grid,
+            .blogs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-content {
+                flex-direction: row;
+            }
+
+            .contact-info-cards {
+                width: 40%;
+            }
+
+            .contact-form {
+                width: 60%;
+            }
+
+            .contact-form .form-row {
+                flex-direction: row;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .sidebar {
+                transform: translateX(0);
+            }
+
+            .mobile-nav-toggle {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 250px;
+            }
+
+            .footer {
+                margin-left: 250px;
+            }
+
+            .hero-content h1 {
+                font-size: 3.8em;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .portfolio-grid,
+            .blogs-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Large Desktop Styles */
+        @media (min-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+
+    <button class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
+
+    <div class="sidebar">
+        <div class="sidebar-profile">
+            <img src="./profile.png" alt="Hammad Ahmad">
+            <h2>Hammad Ahmad</h2>
+            <p>Flutter App Developer <br> Mern Stack Devloepr <br> ML Engineer</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/hammad-ahmad-91b2862a5" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/Hammadahmadchohan/Portfolio" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                <li><a href="#services"><i class="fas fa-cogs"></i> Services</a></li>
+                <li><a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+                <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <section id="home" class="hero container reveal">
+            <div class="hero-content">
+                <h1>Hammad Ahmad</h1>
+                <p class="role"><span class="typing"></span></p>
+                <p class="description">I design and code beautifully simple things, and I love what I do. Let's create something amazing together.</p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="view-work">My Work</a>
+                    <a href="#contact" class="contact-me">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Dashboard analytics illustration">
+            </div>
+        </section>
+
+        <section id="about" class="container reveal">
+            <div class="section-heading">
+                <h2>About Me.</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Hello, I'm Hammad Ahmad.</h3>
+                    <p>Passionate and versatile Flutter App Developer, MERN Stack Developer, and Machine Learning Enthusiast based in Burewala, Pakistan. With strong hands-on experience in building cross-platform mobile and web applications, Hammad specializes in Flutter with Firebase integration, clean UI/UX, and robust API connectivity. He also excels in full-stack development using the MERN stack, crafting secure, responsive web solutions with RESTful APIs and real-time databases.</p>
+                    <p>He brings practical machine learning knowledge using Python, TensorFlow, and OpenCV to develop intelligent, data-driven applications. Known for his adaptability, problem-solving mindset, and commitment to excellence, Hammad consistently delivers impactful digital solutions with clean code and agile workflows.</p>
+                </div>
+                <div class="about-details">
+                    <ul>
+                        <li><strong>Name</strong> <span>: Hammad Ahmad</span></li>
+                        <li><strong>Nationality</strong> <span>: Pakistani</span></li>
+                        <li><strong>Phone</strong> <span>: +923131677763</span></li>
+                        <li><strong>Email</strong> <span>: hammadahmad8661@gmail.com</span></li>
+                        <li><strong>Freelance</strong> <span>: Available</span></li>
+                        <li><strong>Language</strong> <span>: English</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume" class="container reveal">
+            <div class="section-heading">
+                <h2>Resume.</h2>
+            </div>
+            <div class="edu-exp-grid">
+                <div class="education reveal">
+                    <h3>Education.</h3>
+                    <div class="education-item">
+                        <h4>MASTER IN COMPUTER SCIENCE</h4>
+                        <p class="year">UAF / 2022 - 2026</p>
+                        <p>Focused on advanced algorithms, distributed systems, and machine learning principles.</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Professional Python Developer</h4>
+                        <p class="year">Corvit / 2025</p>
+                        <p>Developed a strong foundation in software development life cycle, databases, and network architecture.</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Senior Mern Stack Developer</h4>
+                        <p class="year">Nextage IT Solution/ 2022-23</p>
+                        <p>Developed a strong foundation in software development life cycle, databases, and network architecture.</p>
+                    </div>
+                </div>
+                <div class="experience reveal">
+                    <h3>Experience.</h3>
+                    <div class="experience-item">
+                        <h4>Master AI Developer</h4>
+                        <p class="year">Huawei HDDC / 2024 - 25</p>
+                        <p>Leading a team to build and maintain scalable microservices architecture for a high-traffic marketplace.</p>
+                    </div>
+                    <div class="experience-item">
+                        <h4>Senior Flutter Developer</h4>
+                        <p class="year">Acme Digital / 2020 - 2022</p>
+                        <p>Worked on internal tools and customer-facing web applications, improving performance and user experience.</p>
+                    </div>
+                    <div class="experience-item">
+                        <h4>Machine Learning Developer</h4>
+                        <p class="year">Acme Digital / 2020 - 2022</p>
+                        <p>Worked on internal tools and customer-facing web applications, improving performance and user experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="container reveal">
+            <div class="section-heading">
+                <h2>Services.</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Flutter Developer Service -->
+                <div class="service-item reveal">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Flutter Development</h3>
+                    <p>Building beautiful, cross-platform mobile applications with Flutter framework for both iOS and Android from a single codebase.</p>
+                </div>
+
+                <!-- AI Developer Service -->
+                <div class="service-item reveal">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI Development</h3>
+                    <p>Creating intelligent applications with artificial intelligence, including chatbots, recommendation systems, and predictive analytics.</p>
+                </div>
+
+                <!-- ML Developer Service -->
+                <div class="service-item reveal">
+                    <i class="fas fa-robot"></i>
+                    <h3>Machine Learning</h3>
+                    <p>Developing and implementing machine learning models for data analysis, computer vision, natural language processing and more.</p>
+                </div>
+
+                <!-- MERN Stack Developer Service -->
+                <div class="service-item reveal">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>MERN Stack Development</h3>
+                    <p>Building full-stack web applications using MongoDB, Express.js, React.js, and Node.js for scalable and efficient solutions.</p>
+                </div>
+
+                <div class="service-item reveal">
+                    <i class="fas fa-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Building responsive, high-performance websites and web applications from the ground up.</p>
+                </div>
+                <div class="service-item reveal">
+                    <i class="fas fa-server"></i>
+                    <h3>API Development</h3>
+                    <p>Designing and building robust, scalable, and secure RESTful APIs for your applications.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="portfolio" class="container reveal">
+            <div class="section-heading">
+                <h2>Portfolio.</h2>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Flutter E-Commerce App -->
+                <div class="portfolio-item reveal">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Flutter E-Commerce App">
+                            <div class="overlay"><i class="fas fa-link"></i></div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>ShopEasy - E-Commerce App</h4>
+                            <p>FLUTTER | FIREBASE | PROVIDER</p>
+                            <p class="description">Complete shopping app with cart, payments, and admin panel</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- MERN Stack Dashboard -->
+                <div class="portfolio-item reveal">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="MERN Dashboard">
+                            <div class="overlay"><i class="fas fa-link"></i></div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Analytics Dashboard</h4>
+                            <p>MERN STACK | JWT | CHART.JS</p>
+                            <p class="description">Real-time data visualization with user authentication</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Flutter Social Media App -->
+                <div class="portfolio-item reveal">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Social Media App">
+                            <div class="overlay"><i class="fas fa-link"></i></div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Connect - Social App</h4>
+                            <p>FLUTTER | NODE.JS | MONGODB</p>
+                            <p class="description">Social networking app with posts, likes, and comments</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- MERN E-Learning Platform -->
+                <div class="portfolio-item reveal">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="E-Learning Platform">
+                            <div class="overlay"><i class="fas fa-link"></i></div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>LearnHub - E-Learning</h4>
+                            <p>MERN | REDUX | STRIPE API</p>
+                            <p class="description">Online course platform with payment integration</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Flutter Fitness App -->
+                <div class="portfolio-item reveal">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Fitness App">
+                            <div class="overlay"><i class="fas fa-link"></i></div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>FitTrack - Fitness App</h4>
+                            <p>FLUTTER | FIREBASE | BLOC</p>
+                            <p class="description">Workout tracking with progress analytics</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- MERN Task Management -->
+                <div class="portfolio-item reveal">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80" alt="Task Management">
+                            <div class="overlay"><i class="fas fa-link"></i></div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>TaskFlow - Productivity App</h4>
+                            <p>MERN | SOCKET.IO | JWT</p>
+                            <p class="description">Collaborative task management system</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="container reveal">
+            <div class="section-heading">
+                <h2>Recent Blogs.</h2>
+            </div>
+            <div class="blogs-grid">
+                <!-- Flutter Development Blog -->
+                <div class="blog-item reveal">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Flutter Development">
+                            <div class="overlay"><i class="fas fa-book-open"></i></div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date-category"><span>15 MAY 2025</span><span>FLUTTER</span></div>
+                            <h4>State Management in Flutter: Comparing BLoC vs Provider</h4>
+                            <p>A comprehensive guide to choosing the right state management solution for your Flutter applications with practical examples.</p>
+                            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- MERN Stack Blog -->
+                <div class="blog-item reveal">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="MERN Stack">
+                            <div class="overlay"><i class="fas fa-book-open"></i></div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date-category"><span>5 MAY 2025</span><span>MERN STACK</span></div>
+                            <h4>Building Scalable MERN Applications: Best Practices</h4>
+                            <p>Learn architectural patterns and optimization techniques to build production-ready MERN applications that scale with your user base.</p>
+                            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- AI/ML Blog -->
+                <div class="blog-item reveal">
+                    <a href="#">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="AI/ML">
+                            <div class="overlay"><i class="fas fa-book-open"></i></div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date-category"><span>25 APR 2025</span><span>AI/ML</span></div>
+                            <h4>Implementing Computer Vision with TensorFlow.js</h4>
+                            <p>How to bring machine learning to the browser with practical examples of image recognition using TensorFlow.js and React.</p>
+                            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container reveal">
+            <div class="section-heading">
+                <h2>Get In Touch.</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info-cards">
+                    <div class="info-card reveal">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h5>Email</h5>
+                            <p>hammadahmad8661@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-card reveal">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h5>Phone</h5>
+                            <p>+923131677763</p>
+                        </div>
+                    </div>
+                    <div class="info-card reveal">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h5>Location</h5>
+                            <p>Burewala, Pakistan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form reveal">
+                    <form id="contactForm" action="https://formsubmit.co/hammadahmad8661@gmail.com" method="POST">
+                        <!-- HoneyPot field to prevent spam -->
+                        <input type="text" name="_honey" style="display: none;">
+                        
+                        <!-- Disable captcha -->
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <!-- Success redirect -->
+                        <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Your Name" required>
+                                <div class="error-message"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" placeholder="Your Email" required>
+                                <div class="error-message"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="subject" placeholder="Subject" required>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message..." required></textarea>
+                            <div class="error-message"></div>
+                        </div>
+                        <button type="submit">
+                            <span class="submit-text">Send Message</span>
+                            <span class="loading hidden">
+                                <i class="fas fa-spinner fa-spin"></i> Sending...
+                            </span>
+                        </button>
+                        
+                        <!-- Success/Error Messages -->
+                        <div id="formAlert" class="hidden"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            © Hammad Ahmad , #Partner <i class="fas fa-heart" style="color: var(--primary-color);"></i>.
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {     
+        // --- Typing Animation ---
+        const typingElement = document.querySelector('.typing');
+        const roles = ['Flutter Developer.', 'MERN Stack Developer.', 'AI/ML Engineer.'];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+            }
+
+            const typeSpeed = isDeleting ? 100 : 150;
+            setTimeout(type, typeSpeed);
+        }
+        if (typingElement) type();
+
+        // --- Active Nav Link on Scroll ---
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar nav a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // --- Mobile Nav Toggle ---
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const body = document.querySelector('body');
+        mobileNavToggle.addEventListener('click', () => {
+            body.classList.toggle('sidebar-visible');
+            mobileNavToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileNavToggle.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // --- Close sidebar when a link is clicked ---
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (body.classList.contains('sidebar-visible')) {
+                    body.classList.remove('sidebar-visible');
+                    mobileNavToggle.querySelector('i').classList.add('fa-bars');
+                    mobileNavToggle.querySelector('i').classList.remove('fa-times');
+                }
+            });
+        });
+
+        // --- Scroll Reveal Animation ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+
+        // --- Custom Cursor ---
+        const cursor = document.querySelector('.custom-cursor');
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea, [onclick]');
+        window.addEventListener('mousemove', e => {
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.left = e.clientX + 'px';
+        });
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+        });
+
+        // --- Contact Form Handling ---
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const form = this;
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const submitText = submitBtn.querySelector('.submit-text');
+                const loading = submitBtn.querySelector('.loading');
+                const formAlert = document.getElementById('formAlert');
+                
+                // Reset UI
+                formAlert.classList.add('hidden');
+                submitText.classList.remove('hidden');
+                loading.classList.add('hidden');
+                
+                // Validate form
+                let isValid = true;
+                form.querySelectorAll('[required]').forEach(input => {
+                    const errorMsg = input.nextElementSibling;
+                    if (!input.value.trim()) {
+                        errorMsg.textContent = 'This field is required';
+                        errorMsg.classList.remove('hidden');
+                        input.classList.add('error');
+                        isValid = false;
+                    } else {
+                        errorMsg.classList.add('hidden');
+                        input.classList.remove('error');
+                    }
+                });
+                
+                if (!isValid) return;
+                
+                // Submit form
+                submitText.classList.add('hidden');
+                loading.classList.remove('hidden');
+                
+                fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        formAlert.textContent = 'Message sent successfully! I will get back to you soon.';
+                        formAlert.classList.remove('hidden', 'error');
+                        formAlert.classList.add('success');
+                        form.reset();
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    formAlert.textContent = 'There was a problem sending your message. Please try again later or contact me directly at hammadahmad8661@gmail.com';
+                    formAlert.classList.remove('hidden', 'success');
+                    formAlert.classList.add('error');
+                })
+                .finally(() => {
+                    submitText.classList.remove('hidden');
+                    loading.classList.add('hidden');
+                    formAlert.classList.remove('hidden');
+                });
+            });
+
+            // Real-time validation
+            document.querySelectorAll('#contactForm [required]').forEach(input => {
+                input.addEventListener('input', function() {
+                    const errorMsg = this.nextElementSibling;
+                    if (this.value.trim()) {
+                        errorMsg.classList.add('hidden');
+                        this.classList.remove('error');
+                    }
+                });
+            });
+        }
+    });
+    </script>
+</body>
+</html>
